@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'predictions',
     'rest_framework',
     'randomnumbers',
+    'verses',
 ]
 
 MIDDLEWARE = [

@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('predictions.urls')),    # Підключення app predictions
     path('api/', include('randomnumbers.urls')),  # Підключення app randomnumbers
+    path('api/verses/', include('verses.urls')),
 ]

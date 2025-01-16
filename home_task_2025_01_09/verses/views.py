@@ -41,3 +41,44 @@ class RandomThemeVerseView(APIView):
             })
         return Response({"error": "Theme not found"}, status=404)
 
+class AuthorVersesView(APIView):
+    def get(self, request):
+        author = request.query_params.get('author')
+        if not author:
+            return Response({"error": "Author parameter is required"}, status=400)
+        verses = Verse.objects.filter(author__iexact=author)
+        if verses.exists():
+            titles = [verse.title for verse in verses]
+            return Response({
+                "author": author,
+                "titles": titles
+            })
+        return Response({"error": "Author not found"}, status=404)
+
+
+class AllAuthorsView(APIView):
+    def get(self, request):
+        authors = Verse.objects.values_list('author', flat=True).distinct()
+        return Response({"authors": list(authors)})
+
+
+class AllThemesView(APIView):
+    def get(self, request):
+        themes = dict(Verse.THEMES).values()
+        return Response({"themes": list(themes)})
+
+
+class TitlesByThemeView(APIView):
+    def get(self, request):
+        theme = request.query_params.get('theme')
+        if not theme:
+            return Response({"error": "Theme parameter is required"}, status=400)
+        verses = Verse.objects.filter(theme=theme)
+        if verses.exists():
+            titles = [verse.title for verse in verses]
+            return Response({
+                "theme": theme,
+                "titles": titles
+            })
+        return Response({"error": "Theme not found"}, status=404)
+

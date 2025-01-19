@@ -61,7 +61,7 @@ def character_detail(request, data, id):
 @fetch_data("planets")
 def planets_list(request, data):
     """
-    Представление для отображения списка планет.
+    Представлення для відображення списка планет.
     """
     planets = data.get('results', [])
     return render(request, 'films/planets_list.html', {'planets': planets})
@@ -69,6 +69,23 @@ def planets_list(request, data):
 @fetch_data("planets")
 def planet_detail(request, data, id):
     """
-    Представление для отображения информации о конкретной планете.
+    Представлення для відображення информації про конкретну планету.
     """
     return render(request, 'films/planet_detail.html', {'planet': data})
+
+
+
+@fetch_data("starships")
+def starships_list(request, data):
+    """
+    Представлення для відображення списка кораблів.
+    """
+    starships = data.get('results', [])
+    return render(request, 'films/starships_list.html', {'starships': starships})
+
+@fetch_data("starships")
+def starship_detail(request, data, id):
+    """
+    Представлення для відображення информації про конкретного корабля.
+    """
+    return render(request, 'films/starship_detail.html', {'starship': data})

@@ -8,4 +8,6 @@ urlpatterns = [
     path('character/<int:id>/', views.character_detail, name='character_detail'),
     path('planets/', views.planets_list, name='planets_list'),
     path('planet/<int:id>/', views.planet_detail, name='planet_detail'),
+    path('starships/', views.starships_list, name='starships_list'),
+    path('starship/<int:id>/', views.starship_detail, name='starship_detail'),
 ]

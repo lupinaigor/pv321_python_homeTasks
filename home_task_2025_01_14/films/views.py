@@ -40,6 +40,7 @@ def film_detail(request, data, id):
     return render(request, 'films/film_detail.html', {'film': data})
 
 
+
 @fetch_data("people")
 def characters_list(request, data):
     """
@@ -54,3 +55,20 @@ def character_detail(request, data, id):
     Представлення для відображення информації про конкретного персонажа.
     """
     return render(request, 'films/character_detail.html', {'character': data})
+
+
+
+@fetch_data("planets")
+def planets_list(request, data):
+    """
+    Представление для отображения списка планет.
+    """
+    planets = data.get('results', [])
+    return render(request, 'films/planets_list.html', {'planets': planets})
+
+@fetch_data("planets")
+def planet_detail(request, data, id):
+    """
+    Представление для отображения информации о конкретной планете.
+    """
+    return render(request, 'films/planet_detail.html', {'planet': data})

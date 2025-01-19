@@ -38,3 +38,19 @@ def film_detail(request, data, id):
     Представлення для відображення информації про конкретний фільм.
     """
     return render(request, 'films/film_detail.html', {'film': data})
+
+
+@fetch_data("people")
+def characters_list(request, data):
+    """
+    Представлення для відображення списка персонажів.
+    """
+    characters = data.get('results', [])
+    return render(request, 'films/characters_list.html', {'characters': characters})
+
+@fetch_data("people")
+def character_detail(request, data, id):
+    """
+    Представлення для відображення информації про конкретного персонажа.
+    """
+    return render(request, 'films/character_detail.html', {'character': data})
